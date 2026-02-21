@@ -6,6 +6,7 @@ import { genderOptions } from "../data/genderOptions";
 import { courseOptions } from "../data/courseOptions";
 import { levels } from "../data/experienceLevels";
 import { Check } from "lucide-react";
+import { formSchema } from "../utils/validationSchema";
 
 const GetAccessForm = () => {
   return (
@@ -19,7 +20,14 @@ const GetAccessForm = () => {
         course: "",
         experience: "",
       }}
-      onSubmit={(values, { resetForm, setSubmitting }) => {}}
+      validationSchema={formSchema}
+      onSubmit={(values, { resetForm, setSubmitting }) => {
+        setTimeout(() => {
+          alert("form submitted");
+          setSubmitting(false);
+          resetForm();
+        }, 1000);
+      }}
     >
       {(formik) => {
         const handleSelect = (value) => {
@@ -89,7 +97,7 @@ const GetAccessForm = () => {
                         key={level.value}
                         type="button"
                         onClick={() => handleSelect(level.value)}
-                        className={`flex flex-col items-center text-center gap-2 p-4 rounded-tr-4xl rounded-bl-4xl transition-all duration-300 ease-in-out bg-green-900 text-white ${isSelected ? "outline-4 outline-green-600 relative" : ""}`}
+                        className={`flex flex-col items-center text-center gap-2 p-4 rounded-tr-4xl rounded-bl-4xl transition-all duration-500 ease-in-out hover:scale-[1.04] active:scale-[0.9] bg-green-900 text-white ${isSelected ? "outline-4 outline-green-600 relative" : ""}`}
                       >
                         {isSelected && (
                           <span className="w-5 h-5 rounded-full bg-green-600 absolute right-2 bottom-2 flex items-center justify-center">
@@ -107,6 +115,11 @@ const GetAccessForm = () => {
                     );
                   })}
                 </div>
+                {formik.errors.experience && formik.touched.experience && (
+                  <p className="text-red-500 text-xs mt-2">
+                    {formik.errors.experience}
+                  </p>
+                )}
               </div>
 
               <button
@@ -124,9 +137,3 @@ const GetAccessForm = () => {
 };
 
 export default GetAccessForm;
-
-// ${
-//                           isSelected
-//                             ? "bg-white text-white border-4 border-green-950 py-6"
-//                             : "bg-green-900 text-white hover:scale-[1.05] duration-500 ease-in-out active:scale-[0.95] py-6"
-//                         }
