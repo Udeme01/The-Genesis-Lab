@@ -1,17 +1,13 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import IllustrationImage from "../component/IllustrationImage";
-
-const courses = [
-  "Frontend Development",
-  "Backend Development",
-  "UI/UX Design",
-  "Data Analysis",
-  "Cybersecurity",
-];
+import Input from "../component/ui/Input";
+import { genderOptions } from "../data/genderOptions";
+import { courseOptions } from "../data/courseOptions";
+import { levels } from "../data/experienceLevels";
+import { Check } from "lucide-react";
 
 const GetAccessForm = () => {
-  const inputStyles = `outline-none border border-stone-200 p-3 rounded w-full focus:border-green-700 transition-all duration-500 ease-in-out placeholder:text-stone-300`;
   return (
     <Formik
       initialValues={{
@@ -21,82 +17,116 @@ const GetAccessForm = () => {
         phoneNumber: "",
         gender: "",
         course: "",
+        experience: "",
       }}
       onSubmit={(values, { resetForm, setSubmitting }) => {}}
     >
-      {(formik) => (
-        <Form className="relative mx-auto min-h-screen w-full grid grid-cols-1 lg:grid-cols-2 place-items-center">
-          <IllustrationImage />
-          <section className="flex items-center justify-center h-[60vh] flex-col gap-3 w-[80%] mx-auto">
-            <input
-              type="text"
-              id="firstName"
-              name="firstName"
-              placeholder="First Name"
-              className={inputStyles}
-            />
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              placeholder="Last Name"
-              className={inputStyles}
-            />
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Email"
-              className={inputStyles}
-            />
-            <input
-              type="tel"
-              id="phoneNumber"
-              name="phoneNumber"
-              placeholder="Phone Number"
-              className={inputStyles}
-            />
-            <select
-              name="gender"
-              onChange={formik.handleChange}
-              value={formik.values.gender}
-              className={inputStyles}
-            >
-              <option value="" disabled hidden>
-                Gender
-              </option>
-              {["male", "female"].map((gender) => (
-                <option key={gender} value={gender}>
-                  {gender}
-                </option>
-              ))}
-            </select>
-            <select
-              name="course"
-              onChange={formik.handleChange}
-              value={formik.values.course}
-              className={inputStyles}
-            >
-              <option value="" disabled hidden>
-                What do you want to learn?
-              </option>
-              {courses.map((course) => (
-                <option key={course} value={course}>
-                  {course}
-                </option>
-              ))}
-            </select>
-            <button
-              type="submit"
-              className="border-none outline-none bg-green-800 text-stone-100 py-4 rounded mt-8 w-full px-8 text-sm font-bold tracking-wide cursor-pointer hover:bg-green-900 duration-500 ease-in-out hover:scale-[1.04] active:scale-[0.9]"
-            >
-              Get Access
-            </button>
-          </section>
-        </Form>
-      )}
+      {(formik) => {
+        const handleSelect = (value) => {
+          formik.setFieldValue("experience", value);
+        };
+        return (
+          <Form className="relative mx-auto min-h-screen w-full grid grid-cols-1 lg:grid-cols-2 place-items-center">
+            <IllustrationImage />
+            <section className="flex items-center justify-center flex-col gap-3 w-[90%] md:w-[80%] max-w-200 my-12 mx-auto">
+              <Input
+                type="text"
+                id="firstName"
+                name="firstName"
+                placeholder="First Name"
+                formik={formik}
+              />
+              <Input
+                type="text"
+                id="lastName"
+                name="lastName"
+                placeholder="Last Name"
+                formik={formik}
+              />
+              <Input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email"
+                formik={formik}
+              />
+              <Input
+                type="tel"
+                id="phoneNumber"
+                name="phoneNumber"
+                placeholder="Phone Number"
+                formik={formik}
+              />
+              <Input
+                as="select"
+                id="gender"
+                name="gender"
+                placeholder="Gender"
+                options={genderOptions}
+                formik={formik}
+              />
+              <Input
+                as="select"
+                id="course"
+                name="course"
+                placeholder="What do you want to learn?"
+                options={courseOptions}
+                formik={formik}
+              />
+
+              <div className="w-full mt-6">
+                {/* Label */}
+                <label className="block text-2xl text-green-800 mb-3 text-center font-bold uppercase tracking-tighter">
+                  What's your experience level?
+                </label>
+
+                {/* Cards */}
+                <div className="w-full mx-auto gap-6 flex flex-col md:grid md:grid-cols-3">
+                  {levels.map((level) => {
+                    const isSelected = formik.values.experience === level.value;
+                    return (
+                      <button
+                        key={level.value}
+                        type="button"
+                        onClick={() => handleSelect(level.value)}
+                        className={`flex flex-col items-center text-center gap-2 p-4 rounded-tr-4xl rounded-bl-4xl transition-all duration-300 ease-in-out bg-green-900 text-white ${isSelected ? "outline-4 outline-green-600 relative" : ""}`}
+                      >
+                        {isSelected && (
+                          <span className="w-5 h-5 rounded-full bg-green-600 absolute right-2 bottom-2 flex items-center justify-center">
+                            <Check size={14} />
+                          </span>
+                        )}
+                        <span className="text-2xl">{level.emoji}</span>
+                        <span className="text-sm font-bold tracking-wide">
+                          {level.label}
+                        </span>
+                        <span className="text-xs leading-snug opacity-80">
+                          {level.description}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                className="border-none outline-none bg-green-800 text-stone-100 py-4 rounded mt-8 w-full px-8 text-sm font-bold tracking-wide cursor-pointer hover:bg-green-900 duration-500 ease-in-out hover:scale-[1.04] active:scale-[0.9] rounded-tr-4xl rounded-bl-4xl"
+              >
+                Get Access
+              </button>
+            </section>
+          </Form>
+        );
+      }}
     </Formik>
   );
 };
 
 export default GetAccessForm;
+
+// ${
+//                           isSelected
+//                             ? "bg-white text-white border-4 border-green-950 py-6"
+//                             : "bg-green-900 text-white hover:scale-[1.05] duration-500 ease-in-out active:scale-[0.95] py-6"
+//                         }
