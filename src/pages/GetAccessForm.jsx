@@ -34,7 +34,7 @@ const GetAccessForm = () => {
           formik.setFieldValue("experience", value);
         };
         return (
-          <Form className="relative mx-auto min-h-screen w-full grid grid-cols-1 lg:grid-cols-2 place-items-center">
+          <Form className="relative mx-auto min-h- w-full grid grid-cols-1 lg:grid-cols-2 place-items-center">
             <IllustrationImage />
             <section className="flex items-center justify-center flex-col gap-3 w-[90%] md:w-[80%] max-w-200 my-12 mx-auto">
               <Input
