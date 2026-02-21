@@ -19,4 +19,8 @@ export const courseOptions = [
     value: "cybersecurity",
     label: "Cybersecurity",
   },
+  {
+    value: "graphics design",
+    label: "Graphics Design",
+  },
 ];
