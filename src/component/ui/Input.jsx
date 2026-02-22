@@ -17,7 +17,7 @@ const Input = ({
 
   const hasError = Boolean(errors[name] && touched[name]);
 
-  const inputStyles = `outline-none border border-stone-200 p-6 rounded w-full focus:border-green-700 transition-all duration-500 ease-in-out placeholder:text-stone-300 rounded-tr-4xl rounded-bl-4xl`;
+  const inputStyles = `outline-none border border-stone-400 p-6 rounded w-full focus:border-green-700 transition-all duration-500 ease-in-out placeholder:text-stone-300 rounded-tr-4xl rounded-bl-4xl`;
 
   const Component = as;
 
