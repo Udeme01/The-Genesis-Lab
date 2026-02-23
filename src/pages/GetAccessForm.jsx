@@ -7,8 +7,14 @@ import { courseOptions } from "../data/courseOptions";
 import { levels } from "../data/experienceLevels";
 import { Check } from "lucide-react";
 import { formSchema } from "../utils/validationSchema";
+import { useNavigate } from "react-router-dom";
+
+// supabase client
+import supabase from "../lib/supabaseClient";
 
 const GetAccessForm = () => {
+  const navigate = useNavigate();
+
   return (
     <Formik
       initialValues={{
@@ -22,11 +28,26 @@ const GetAccessForm = () => {
       }}
       validationSchema={formSchema}
       onSubmit={(values, { resetForm, setSubmitting }) => {
-        setTimeout(() => {
-          alert("form submitted");
-          setSubmitting(false);
-          resetForm();
-        }, 1000);
+        setTimeout(async () => {
+          const { error } = await supabase.from("StudentOnboardList").insert({
+            firstName: values.firstName,
+            lastName: values.lastName,
+            email: values.email,
+            phoneNumber: values.phoneNumber,
+            gender: values.gender,
+            course: values.course,
+            experience: values.experience,
+          });
+
+          if (!error) {
+            setSubmitting(false);
+            resetForm();
+            navigate("/success");
+          } else {
+            console.log("supabase error", error);
+            setSubmitting(false);
+          }
+        }, 3000);
       }}
     >
       {(formik) => {
@@ -124,9 +145,10 @@ const GetAccessForm = () => {
 
               <button
                 type="submit"
-                className="border-none outline-none bg-green-800 text-stone-100 py-4 rounded mt-8 w-full px-8 text-sm font-bold tracking-wide cursor-pointer hover:bg-green-900 duration-500 ease-in-out hover:scale-[1.04] active:scale-[0.9] rounded-tr-4xl rounded-bl-4xl"
+                disabled={formik.isSubmitting}
+                className={`border-none outline-none bg-green-800 text-stone-100 py-4 rounded mt-8 w-full px-8 text-sm font-bold tracking-wide cursor-pointer hover:bg-green-900 duration-500 ease-in-out hover:scale-[1.04] active:scale-[0.9] rounded-tr-4xl rounded-bl-4xl disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100 ${formik.isSubmitting && "animate-bounce"}`}
               >
-                Get Access
+                {formik.isSubmitting ? "Granting Access" : "Grant Access"}
               </button>
             </section>
           </Form>

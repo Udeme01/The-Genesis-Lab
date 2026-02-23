@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
 import Root from "./pages/Root";
 import Home from "./pages/Home";
+import Success from "./pages/Success";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -14,6 +15,10 @@ const App = () => {
         {
           index: true,
           element: <Home />,
+        },
+        {
+          path: "/success",
+          element: <Success />,
         },
       ],
     },
