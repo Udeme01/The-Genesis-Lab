@@ -64,6 +64,7 @@ const GetAccessForm = () => {
                 name="firstName"
                 placeholder="First Name"
                 formik={formik}
+                label="First Name"
               />
               <Input
                 type="text"
@@ -71,6 +72,7 @@ const GetAccessForm = () => {
                 name="lastName"
                 placeholder="Last Name"
                 formik={formik}
+                label="Last Name"
               />
               <Input
                 type="email"
@@ -78,6 +80,7 @@ const GetAccessForm = () => {
                 name="email"
                 placeholder="Email"
                 formik={formik}
+                label="Email"
               />
               <Input
                 type="tel"
@@ -85,10 +88,12 @@ const GetAccessForm = () => {
                 name="phoneNumber"
                 placeholder="Phone Number"
                 formik={formik}
+                label="Phone Number"
               />
               <Input
                 as="select"
                 id="gender"
+                label="gender"
                 name="gender"
                 placeholder="Gender"
                 options={genderOptions}
@@ -97,6 +102,7 @@ const GetAccessForm = () => {
               <Input
                 as="select"
                 id="course"
+                label="course"
                 name="course"
                 placeholder="What do you want to learn?"
                 options={courseOptions}
@@ -105,7 +111,7 @@ const GetAccessForm = () => {
 
               <div className="w-full mt-6">
                 {/* Label */}
-                <label className="block text-2xl text-green-800 mb-3 text-center font-bold uppercase tracking-tighter">
+                <label className="block text-2xl text-blackish mb-3 text-center font-medium uppercase tracking-tighter font-space">
                   What's your experience level?
                 </label>
 
@@ -118,10 +124,10 @@ const GetAccessForm = () => {
                         key={level.value}
                         type="button"
                         onClick={() => handleSelect(level.value)}
-                        className={`flex flex-col items-center text-center gap-2 p-4 rounded-tr-4xl rounded-bl-4xl transition-all duration-500 ease-in-out hover:scale-[1.04] active:scale-[0.9] bg-green-900 text-white ${isSelected ? "outline-4 outline-green-600 relative" : ""}`}
+                        className={`flex flex-col items-center text-center gap-2 p-4 rounded-tr-4xl rounded-bl-4xl transition-all duration-500 ease-in-out hover:scale-[1.04] active:scale-[0.9] bg-green-900 text-white font-manrope ${isSelected ? "outline-4 outline-brandColor relative" : ""}`}
                       >
                         {isSelected && (
-                          <span className="w-5 h-5 rounded-full bg-green-600 absolute right-2 bottom-2 flex items-center justify-center">
+                          <span className="w-5 h-5 rounded-full bg-brandColor absolute right-2 bottom-2 flex items-center justify-center">
                             <Check size={14} />
                           </span>
                         )}
@@ -146,9 +152,9 @@ const GetAccessForm = () => {
               <button
                 type="submit"
                 disabled={formik.isSubmitting}
-                className={`border-none outline-none bg-green-800 text-stone-100 py-4 rounded mt-8 w-full px-8 text-sm font-bold tracking-wide cursor-pointer hover:bg-green-900 duration-500 ease-in-out hover:scale-[1.04] active:scale-[0.9] rounded-tr-4xl rounded-bl-4xl disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100 ${formik.isSubmitting && "animate-bounce"}`}
+                className={`font-manrope border-none outline-none bg-green-800 text-stone-100 py-4 rounded mt-8 w-full px-8 text-sm font-bold tracking-wide cursor-pointer hover:bg-green-900 duration-500 ease-in-out hover:scale-[1.04] active:scale-[0.9] rounded-tr-4xl rounded-bl-4xl disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100 ${formik.isSubmitting && "animate-bounce"}`}
               >
-                {formik.isSubmitting ? "Granting Access" : "Grant Access"}
+                {formik.isSubmitting ? "Granting Access" : "Grant Me Access"}
               </button>
             </section>
           </Form>

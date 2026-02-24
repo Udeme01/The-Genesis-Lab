@@ -17,13 +17,19 @@ const Input = ({
 
   const hasError = Boolean(errors[name] && touched[name]);
 
-  const inputStyles = `outline-none border border-stone-400 p-6 rounded w-full focus:border-green-700 transition-all duration-500 ease-in-out placeholder:text-stone-300 rounded-tr-4xl rounded-bl-4xl`;
+  const inputStyles = `outline-none border border-stone-400 p-6 rounded w-full focus:border-brandColor transition-all duration-500 ease-in-out placeholder:text-stone-300 rounded-tr-4xl rounded-bl-4xl mt-2 mb-1 font-manrope font-light`;
+
+  const labelStyles = `text-xs tracking-widest uppercase text-blackish font-light py-1 font-space font-medium`;
 
   const Component = as;
 
   return (
     <div className="w-full">
-      {label && <label>{label}</label>}
+      {label && (
+        <label className={labelStyles} htmlFor={inputId}>
+          {label}
+        </label>
+      )}
       {as === "select" ? (
         <select
           id={inputId}
@@ -37,7 +43,11 @@ const Input = ({
             {placeholder}
           </option>
           {options.map((option) => (
-            <option key={option.value} value={option.value}>
+            <option
+              className="font-manrope"
+              key={option.value}
+              value={option.value}
+            >
               {option.label}
             </option>
           ))}
@@ -56,7 +66,11 @@ const Input = ({
           disabled={disabled}
         />
       )}
-      {hasError && <p className="text-red-500 text-xs mt-2">{errors[name]}</p>}
+      {hasError && (
+        <p className="text-red-600 text-xs tracking-wide mb-4 font-manrope">
+          {errors[name]}
+        </p>
+      )}
     </div>
   );
 };

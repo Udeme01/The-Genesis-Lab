@@ -24,8 +24,10 @@ const Success = () => {
         </div>
 
         {/* Message */}
-        <h1 className="text-2xl font-bold text-gray-800 mb-2">You're In! 🎉</h1>
-        <p className="text-gray-500 mb-6">
+        <h1 className="text-2xl font-bold text-gray-800 mb-2 font-space">
+          You're In! 🎉
+        </h1>
+        <p className="text-gray-500 mb-6 font-manrope">
           Thank you for signing up! You're one step away from joining our
           amazing WhatsApp community.
         </p>
@@ -33,10 +35,10 @@ const Success = () => {
         {/* WhatsApp Button */}
 
         <a
-          href="https://chat.whatsapp.com/your-invite-link" // 👈 replace with your link
+          href="https://chat.whatsapp.com/BnrWpGVerTkBpim91Mz0UQ?mode=gi_t"
           target="_blank"
           rel="noreferrer"
-          className="block w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-xl transition duration-200 mb-4"
+          className="block w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-xl transition duration-200 mb-4 font-manrope"
         >
           Join WhatsApp Community
         </a>
@@ -44,7 +46,7 @@ const Success = () => {
         {/* Back button */}
         <button
           onClick={() => navigate("/")}
-          className="text-sm text-gray-400 hover:text-gray-600 transition"
+          className="text-sm text-blackish/80 hover:text-gray-600 transition font-manrope"
         >
           Back to Home
         </button>
