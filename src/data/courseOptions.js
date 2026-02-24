@@ -4,6 +4,10 @@ export const courseOptions = [
     label: "Frontend Development",
   },
   {
+    value: "ui/ux design",
+    label: "UI/UX Design",
+  },
+  {
     value: "graphics design",
     label: "Graphics Design",
   },
