@@ -74,7 +74,7 @@ const GetAccessForm = () => {
                   </span>
 
                   <p className="tracking-wide opacity-80 text-center md:text-left text-sm md:text-md">
-                    A paid, hands-on training program for web developers, UI/UX designers, and graphic
+                    A paid, hands-on training program for aspiring web developers, UI/UX designers, and graphic
                     designers who want to learn by building - not just watch tutorials.
                   </p>
                 </div>
