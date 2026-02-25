@@ -59,22 +59,23 @@ const GetAccessForm = () => {
             <IllustrationImage />
             <section className="flex items-center justify-center flex-col gap-3 w-[90%] md:w-[80%] max-w-200 mx-auto my-14">
               <section className="mb-8">
-                <h1 className="text-3xl font-space text-center md:text-left font-semibold">
-                  You Don’t Need Another Tutorial. You Need Practice.
+                <h1 className="text-2xl md:text-3xl font-space text-center md:text-left font-semibold">
+                  Join The Genesis Lab – A Practical Web Development & Design
+                  Program.
                 </h1>
-                <p className="font-manrope text-center md:text-left my-3 tracking-wider">
+                {/* <p className="font-manrope text-center md:text-left my-3 tracking-wider">
                   Join a learning space where you actually build, practice, and
                   grow.
-                </p>
-                <div className="flex items-center justify-start gap-2 font-manrope mt-10">
+                </p> */}
+                <div className="flex items-center justify-start gap-2 font-manrope mt-4">
                   <span className="relative flex h-2 w-2">
                     <span className="absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75 animate-ping"></span>
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
                   </span>
 
-                  <p className="text-sm tracking-tight opacity-80 text-left">
-                    A paid, hands-on training program for beginners and
-                    intermediate learners focused on real projects.
+                  <p className="tracking-wide opacity-80 text-center md:text-left text-sm md:text-md">
+                    A paid, hands-on training program for web developers, UI/UX designers, and graphic
+                    designers who want to learn by building - not just watch tutorials.
                   </p>
                 </div>
               </section>
