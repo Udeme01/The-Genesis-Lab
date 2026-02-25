@@ -3,7 +3,7 @@ export const levels = [
     value: "beginner",
     emoji: "🌱",
     label: "Beginner",
-    description: "I've never coded before",
+    description: "Never have I ever",
   },
   {
     value: "intermediate",
